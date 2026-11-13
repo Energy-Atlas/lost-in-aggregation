@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lost in Aggregation? — Zoning and stacking detail in building energy models</title>
+<meta name="description" content="ASIM 2026 poster: how much thermal-zoning and floor-stacking detail a building energy model needs, tested on 1,046 building contexts against detailed EnergyPlus references.">
+<style>
+  :root {
+    --ink: #1a1a1a; --muted: #555; --line: #e2e2e2; --bg: #ffffff; --panel: #f6f6f4; --accent: #c8102e;
+    --maxw: 1080px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --ink: #ececec; --muted: #a8a8a8; --line: #333; --bg: #141414; --panel: #1d1d1d; --accent: #ff5a6e; }
+    figure img { background: #fff; }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 Calibri, Carlito, "Segoe UI", system-ui, -apple-system, sans-serif; }
+  main { max-width: var(--maxw); margin: 0 auto; padding: 0 16px 64px; }
+  header.top { border-bottom: 4px solid var(--accent); }
+  header.top .inner { max-width: var(--maxw); margin: 0 auto; padding: 40px 16px 28px; }
+  .venue { color: var(--accent); font-weight: 600; letter-spacing: .02em; margin: 0 0 8px; }
+  h1 { font-size: clamp(28px, 4.2vw, 42px); line-height: 1.15; margin: 0 0 16px; }
+  .authors { font-size: 19px; font-weight: 600; margin: 0; }
+  .affil { color: var(--muted); margin: 2px 0 20px; }
+  .buttons { display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn { display: inline-block; padding: 9px 16px; border: 1.5px solid var(--accent); border-radius: 6px; color: var(--accent); text-decoration: none; font-weight: 600; }
+  .btn.primary { background: var(--accent); color: #fff; }
+  h2 { font-size: 24px; margin: 48px 0 12px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+  p, li { max-width: 72ch; }
+  ul.find { padding-left: 1.2em; }
+  ul.find li { margin: 6px 0; }
+  .grid2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+  @media (max-width: 760px) { .grid2 { grid-template-columns: minmax(0, 1fr); } }
+  figure { margin: 20px 0 8px; }
+  figure img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 4px; }
+  figcaption { color: var(--muted); font-size: 15px; margin-top: 6px; max-width: 80ch; }
+  .poster-thumb img { max-width: 360px; }
+  table { border-collapse: collapse; margin: 8px 0; font-size: 16px; }
+  th, td { text-align: left; padding: 4px 14px 4px 0; border-bottom: 1px solid var(--line); }
+  th { font-weight: 600; }
+  pre { background: var(--panel); padding: 12px 14px; border-radius: 6px; overflow-x: auto; font-size: 14px; white-space: pre-wrap; }
+  footer { max-width: var(--maxw); margin: 0 auto; padding: 24px 16px 40px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="inner">
+    <p class="venue">ASIM 2026 · Singapore · 16–18 November 2026 · Building and Urban-Scale Performance Simulation</p>
+    <h1>Lost in Aggregation? The Diminishing Returns of Geometric Fidelity and Thermal Zoning Details in Urban-Scale Building Energy Simulations</h1>
+    <p class="authors">Chengxuan Li, Zihan Jimmy Wang, Timur Dogan</p>
+    <p class="affil">Environmental Systems Lab, Cornell University, USA</p>
+    <div class="buttons">
+      <a class="btn primary" href="assets/poster.pdf">Poster (PDF)</a>
+      <a class="btn" href="#findings">Key findings</a>
+      <a class="btn" href="#figures">Figures</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section>
+    <h2>Question and setup</h2>
+    <div class="grid2">
+      <div>
+        <p>How much thermal-zoning and floor-stacking detail does a building energy model need?</p>
+        <ul>
+          <li>1,046 building contexts: 15 building types (10 midrise apartment families, a highrise, a terrace row, and small, medium and large offices) × 19 climates × up to 4 code eras.</li>
+          <li>Nine simplified models per context, each compared with a detailed EnergyPlus reference in which every room is a zone and every storey is explicit (11,506 cases per load, served by 10,104 unique runs).</li>
+          <li>Errors are expressed per reference conditioned floor area: hourly RMSE (W/m²) and annual demand (kWh/m²a).</li>
+        </ul>
+      </div>
+      <figure class="poster-thumb">
+        <a href="assets/poster.pdf"><img src="assets/poster_preview.jpg" alt="Preview of the A0 poster" loading="lazy" width="1200" height="1696"></a>
+        <figcaption>The A0 poster (click for the PDF).</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="findings">
+    <h2>Key findings</h2>
+    <ul class="find">
+      <li><strong>Semantic merge (SM)</strong> is closest in every building type (median hourly RMSE ≤ 0.15 W/m²) and the sole best model in 76 % (cooling) / 55 % (heating) of contexts.</li>
+      <li><strong>Building type matters:</strong> in the medium office, one zone per floor or per building reaches 1.2–1.9 W/m².</li>
+      <li><strong>Lost in aggregation:</strong> median annual departures are 0.3–10 % of demand, while median hourly RMSE spans 0.04–0.91 W/m² across models.</li>
+      <li><strong>Climate:</strong> heating error grows from hot to cold climates; cooling error peaks in hot climates for apartments, but in cold ones for the large office.</li>
+      <li><strong>Cost differs by program:</strong> in midrise apartments SM costs about the CPU time of the floor multiplier (SFZM); in the large office SFZM is 4–5× cheaper.</li>
+    </ul>
+  </section>
+
+  <section id="figures">
+    <h2>What is simplified</h2>
+    <figure>
+      <img src="assets/zonings.png" alt="Ground-storey plans of the medium office under six zoning methods" loading="lazy" width="2000" height="1493">
+      <figcaption>Zonings of one storey of the medium office; every model keeps the programs of the rooms it merges. NS: every room a zone (reference); SM: semantic merge; SMJP: semantic merge with joined pieces; CM: conditioned merge; PC4.57: perimeter–core, 4.57 m; SZF: one zone per floor.</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/stackings.png" alt="Zone volumes and sections of a six-storey LinearPlan building under four stacking methods" loading="lazy" width="2000" height="1149">
+      <figcaption>Stackings (LinearPlan, 6 storeys). The floor multiplier (SFZM) also makes interstorey surfaces adiabatic; one zone per floor entry (SZFT) and one zone per building (SZB) turn merged slabs into internal mass.</figcaption>
+    </figure>
+
+    <h2>Which method?</h2>
+    <figure>
+      <img src="assets/methods_by_climate.png" alt="Box plots of signed annual error and hourly RMSE for nine models, all climates and four climate classes" loading="lazy" width="2000" height="1856">
+      <figcaption>Signed annual error and hourly RMSE of nine models, all 1,046 contexts (left) and by climate class. Classes follow ASHRAE 169 thermal zones, which are defined by HDD18 / CDD10: Hot (zones 0–2), Mixed (3–4), Cool (5–6), Cold (7–8). Dots: contexts; box: interquartile range; bar: median; whiskers: 5th–95th percentile; axes end at the whiskers.</figcaption>
+    </figure>
+
+    <h2>Where do errors grow?</h2>
+    <figure>
+      <img src="assets/building_types.png" alt="Heat map of median hourly RMSE per building type and model" loading="lazy" width="2000" height="1115">
+      <figcaption>Median hourly RMSE (W/m²) per building type and model, heating and cooling, over all contexts of each type. ≡ref: identical to the reference.</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/climate_classes.png" alt="Median hourly RMSE per climate class for midrise apartments and the large office" loading="lazy" width="2000" height="461">
+      <figcaption>Median hourly RMSE per climate class, midrise apartments and large office, all eras.</figcaption>
+    </figure>
+
+    <h2>Is the detail worth the cost?</h2>
+    <figure>
+      <img src="assets/cost_accuracy.png" alt="Hourly RMSE against CPU-time ratio for nine models in three building groups" loading="lazy" width="2000" height="681">
+      <figcaption>Hourly RMSE against CPU-time ratio (model / reference) over matched timed contexts: medians and RMSE interquartile range. Process CPU time under 64 concurrent workers, not wall time; ratios that differ by less than about 1.5× are not distinguished.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>Methods at a glance</h2>
+    <table>
+      <tr><th>Code</th><th>Method</th></tr>
+      <tr><td>SM</td><td>Semantic merge: neighbouring rooms of the same type merge</td></tr>
+      <tr><td>SMJP</td><td>Semantic merge with joined pieces: same-type zones also join across the plan</td></tr>
+      <tr><td>CM</td><td>Conditioned merge: rooms merge by conditioning flag</td></tr>
+      <tr><td>PC4.57 / PC3.0</td><td>Perimeter–core zoning with 4.57 m / 3.0 m perimeter zones</td></tr>
+      <tr><td>SZF</td><td>One zone per floor</td></tr>
+      <tr><td>SFZM</td><td>Floor multiplier: representative storeys with multipliers, adiabatic interstorey surfaces</td></tr>
+      <tr><td>SZFT</td><td>One zone per floor entry</td></tr>
+      <tr><td>SZB</td><td>One zone per building</td></tr>
+    </table>
+    <p>All results come from comparative EnergyPlus simulation against detailed reference models, not from measurement.</p>
+  </section>
+
+  <section>
+    <h2>Cite</h2>
+    <pre>Li, C., Wang, Z. J., &amp; Dogan, T. (2026). Lost in Aggregation? The Diminishing Returns of Geometric Fidelity and Thermal Zoning Details in Urban-Scale Building Energy Simulations. ASIM 2026, Singapore.</pre>
+  </section>
+</main>
+
+<footer>
+  Environmental Systems Lab, Cornell University · ASIM 2026 poster companion page.
+</footer>
+</body>
+</html>

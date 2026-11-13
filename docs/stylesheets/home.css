@@ -1,0 +1,174 @@
+/* Landing page (overrides/home.html). Everything is scoped to .lia-home so Material's own pages are untouched. */
+.lia-home, .lia-hero {
+  --ink: #16181d;
+  --ink-2: #3a3f4a;
+  --muted: #5d6371;
+  --line: #e3e3de;
+  --bg: #ffffff;
+  --surface: #f6f5f1;
+  --surface-2: #efede7;
+  --accent: #b31b1b;
+  --accent-ink: #ffffff;
+  --accent-soft: #f8e8e6;
+  --shadow: 0 1px 2px rgba(20, 20, 20, .06), 0 8px 24px rgba(20, 20, 20, .08);
+  --radius: 10px;
+}
+[data-md-color-scheme="slate"] .lia-home, [data-md-color-scheme="slate"] .lia-hero {
+  --ink: #ecebe8;
+  --ink-2: #cfcdc8;
+  --muted: #a3a29d;
+  --line: #34353c;
+  --bg: var(--md-default-bg-color);
+  --surface: #1f2026;
+  --surface-2: #272830;
+  --accent: #ff6b6b;
+  --accent-ink: #16181d;
+  --accent-soft: #3a1d1f;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .35);
+}
+
+.lia-home { color: var(--ink); font-size: .9rem; line-height: 1.6; }
+.lia-home img { max-width: 100%; }
+.lia-home a { color: var(--accent); }
+.lia-home p { max-width: 72ch; }
+.lia-home .sr-only, .lia-hero .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* hero (full width, above the content grid) */
+.lia-hero { background: linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%); border-bottom: 1px solid var(--line); color: var(--ink); font-size: .9rem; line-height: 1.5; }
+.lia-hero .md-grid { display: grid; grid-template-columns: minmax(0, 1fr) 15rem; gap: 2.4rem; align-items: center; padding: 2.6rem .8rem 2.6rem; }
+.lia-hero .venue { display: flex; flex-wrap: wrap; gap: .3rem .5rem; align-items: center; margin: 0 0 .9rem; color: var(--accent); font-weight: 700; font-size: .7rem; letter-spacing: .04em; text-transform: uppercase; }
+.lia-hero .venue .tag { padding: .05rem .4rem; border: 1.5px solid currentColor; border-radius: 999px; }
+.lia-hero h1 { margin: 0 0 1rem; color: var(--ink); font-size: clamp(1.5rem, 4vw, 2.5rem); line-height: 1.08; letter-spacing: -.015em; font-weight: 800; }
+.lia-hero h1 .q { color: var(--accent); }
+.lia-hero h1 .sub { display: block; margin-top: .5rem; font-size: .52em; line-height: 1.25; font-weight: 600; color: var(--ink-2); letter-spacing: 0; }
+.lia-hero .authors { margin: 0; font-size: 1rem; font-weight: 700; }
+.lia-hero .affil { margin: .1rem 0 1.3rem; color: var(--muted); font-size: .9rem; }
+.lia-home .buttons, .lia-hero .buttons { display: flex; flex-wrap: wrap; gap: .5rem; }
+.lia-home .btn, .lia-hero .btn { display: inline-flex; align-items: center; gap: .4rem; padding: .5rem .9rem; border-radius: 8px; border: 1.5px solid var(--line); background: var(--bg); color: var(--ink); font-weight: 700; font-size: .8rem; text-decoration: none; cursor: pointer; font-family: inherit; }
+.lia-home .btn:hover, .lia-hero .btn:hover { border-color: var(--ink-2); color: var(--ink); }
+.lia-home .btn.primary, .lia-hero .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.lia-home .btn.primary:hover, .lia-hero .btn.primary:hover { filter: brightness(1.08); color: var(--accent-ink); }
+.lia-home .btn svg, .lia-hero .btn svg { width: .9rem; height: .9rem; flex: none; }
+.lia-home .poster-card, .lia-hero .poster-card { display: block; border-radius: 6px; overflow: hidden; box-shadow: var(--shadow); background: #fff; transform: rotate(1.2deg); transition: transform .2s ease; }
+.lia-hero .poster-card:hover { transform: rotate(0deg) translateY(-2px); }
+.lia-home .poster-card img, .lia-hero .poster-card img { display: block; width: 100%; height: auto; }
+@media (max-width: 52em) {
+  .lia-hero .md-grid { grid-template-columns: minmax(0, 1fr); gap: 1.6rem; padding-top: 1.8rem; padding-bottom: 2rem; }
+  .lia-hero .poster-col { max-width: 13rem; }
+}
+
+/* numbers strip */
+.lia-home .stats { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin: .4rem 0 0; }
+.lia-home .stats div { background: var(--bg); padding: .9rem .8rem; }
+.lia-home .stats b { display: block; font-size: 1.6rem; line-height: 1.1; font-weight: 800; font-variant-numeric: tabular-nums; }
+.lia-home .stats span { color: var(--muted); font-size: .75rem; line-height: 1.35; display: block; margin-top: .2rem; }
+@media (max-width: 52em) { .lia-home .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } .lia-home .stats div:last-child { grid-column: 1 / -1; } }
+
+/* sections */
+.lia-home section { padding: 3rem 0 .4rem; }
+.lia-home .eyebrow { margin: 0 0 .3rem; color: var(--accent); font-weight: 700; font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; }
+.lia-home h2 { margin: 0 0 .7rem; color: var(--ink); font-size: clamp(1.3rem, 3vw, 1.7rem); line-height: 1.15; letter-spacing: -.01em; font-weight: 800; }
+.lia-home h3 { margin: 0 0 .4rem; color: var(--ink); font-size: 1rem; line-height: 1.25; font-weight: 700; }
+.lia-home .lede { max-width: 68ch; color: var(--ink-2); font-size: .95rem; margin: 0 0 1.2rem; }
+
+/* findings */
+.lia-home .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: .8rem; }
+.lia-home .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.1rem 1.1rem 1rem; }
+.lia-home .card .big { display: block; font-size: 1.9rem; line-height: 1.05; font-weight: 800; color: var(--accent); font-variant-numeric: tabular-nums; margin-bottom: .5rem; letter-spacing: -.01em; }
+.lia-home .card .big small { font-size: .5em; font-weight: 700; color: var(--muted); letter-spacing: 0; }
+.lia-home .card p { margin: .3rem 0 0; color: var(--ink-2); font-size: .85rem; }
+.lia-home .card.lead { background: var(--accent-soft); border-color: transparent; }
+
+/* data call-out */
+.lia-home .callout { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1rem 2rem; align-items: center; padding: 1.3rem 1.4rem; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); }
+.lia-home .callout h2 { margin-bottom: .3rem; }
+.lia-home .callout p { margin: 0; color: var(--ink-2); }
+@media (max-width: 52em) { .lia-home .callout { grid-template-columns: minmax(0, 1fr); } }
+
+/* methods */
+.lia-home .method-groups { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: .8rem; margin-bottom: 1.4rem; }
+@media (max-width: 52em) { .lia-home .method-groups { grid-template-columns: minmax(0, 1fr); } }
+.lia-home .mgroup { border: 1px solid var(--line); border-radius: var(--radius); padding: .9rem 1rem; }
+.lia-home .mgroup h3 { font-size: .8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin-bottom: .6rem; }
+.lia-home .mlist { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+.lia-home .mlist li { display: grid; grid-template-columns: 4rem minmax(0, 1fr); gap: .6rem; align-items: baseline; font-size: .8rem; line-height: 1.4; margin: 0; }
+.lia-home .chip { display: inline-flex; align-items: center; gap: .35rem; font-weight: 800; font-size: .75rem; white-space: nowrap; }
+.lia-home .chip::before { content: ""; width: .55rem; height: .55rem; border-radius: 3px; background: var(--c); flex: none; transform: translateY(1px); }
+.lia-home .ref-note { font-size: .8rem; color: var(--muted); margin: 0 0 .4rem; }
+
+/* figures */
+.lia-home .fig { margin: 0; }
+.lia-home .fig + .fig { margin-top: 1.4rem; }
+.lia-home .fig .frame { display: block; width: 100%; padding: .7rem; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); cursor: zoom-in; position: relative; font: inherit; color: inherit; }
+.lia-home .fig .frame img { display: block; width: 100%; height: auto; }
+.lia-home .fig .frame .zoom { position: absolute; right: .5rem; top: .5rem; display: grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 6px; background: rgba(22, 24, 29, .72); color: #fff; opacity: 0; transition: opacity .15s; }
+.lia-home .fig .frame:hover .zoom, .lia-home .fig .frame:focus-visible .zoom { opacity: 1; }
+.lia-home .fig .frame .zoom svg { width: .9rem; height: .9rem; }
+.lia-home figcaption { margin-top: .5rem; color: var(--muted); font-size: .8rem; line-height: 1.5; max-width: 90ch; text-align: left; }
+.lia-home figcaption b { color: var(--ink); }
+.lia-home .two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.2rem; align-items: start; }
+.lia-home .two .fig + .fig { margin-top: 0; }
+@media (max-width: 56em) { .lia-home .two { grid-template-columns: minmax(0, 1fr); } .lia-home .two .fig + .fig { margin-top: 1.4rem; } }
+.lia-home .side { display: grid; grid-template-columns: minmax(0, 1fr) 15rem; gap: 1.4rem; align-items: start; }
+@media (max-width: 60em) { .lia-home .side { grid-template-columns: minmax(0, 1fr); } }
+.lia-home .aside { position: sticky; top: 4.2rem; }
+.lia-home .aside h3 { font-size: .85rem; }
+.lia-home .aside p { font-size: .8rem; color: var(--ink-2); }
+
+/* tables */
+.lia-home table.plain { border-collapse: collapse; width: 100%; font-size: .75rem; font-variant-numeric: tabular-nums; display: table; }
+.lia-home table.plain th, .lia-home table.plain td { text-align: left; padding: .35rem .5rem .35rem 0; border-bottom: 1px solid var(--line); vertical-align: top; background: none; }
+.lia-home table.plain th { font-weight: 700; color: var(--muted); font-size: .65rem; text-transform: uppercase; letter-spacing: .05em; }
+.lia-home table.plain td.num, .lia-home table.plain th.num { text-align: right; }
+.lia-home .clim td:first-child { font-weight: 700; }
+
+/* interactive heat map */
+.lia-home .explorer { border: 1px solid var(--line); border-radius: var(--radius); padding: .9rem; background: var(--surface); }
+.lia-home .controls { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1rem; margin-bottom: .7rem; }
+.lia-home .seg { display: inline-flex; padding: 3px; background: var(--surface-2); border-radius: 8px; border: 1px solid var(--line); }
+.lia-home .seg button { font: inherit; font-size: .75rem; font-weight: 700; padding: .3rem .7rem; border: 0; border-radius: 6px; background: transparent; color: var(--muted); cursor: pointer; }
+.lia-home .seg button[aria-pressed="true"] { background: var(--bg); color: var(--ink); box-shadow: 0 1px 2px rgba(0, 0, 0, .12); }
+.lia-home .hm-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.lia-home table.hm { border-collapse: separate; border-spacing: 2px; font-size: .7rem; font-variant-numeric: tabular-nums; min-width: 32rem; width: 100%; display: table; }
+.lia-home table.hm th { font-weight: 700; color: var(--ink-2); font-size: .65rem; padding: .2rem .3rem; white-space: nowrap; background: none; }
+.lia-home table.hm thead th { text-align: center; vertical-align: bottom; }
+.lia-home table.hm thead th button { font: inherit; color: inherit; background: none; border: 0; padding: .1rem .2rem; border-radius: 4px; cursor: pointer; }
+.lia-home table.hm thead th button:hover { background: var(--surface-2); }
+.lia-home table.hm thead th button[aria-sort] { color: var(--accent); }
+.lia-home table.hm tbody th { text-align: right; padding-right: .5rem; font-weight: 600; }
+.lia-home table.hm tbody th, .lia-home table.hm thead th:first-child { position: sticky; left: 0; z-index: 1; background: var(--surface); }
+.lia-home table.hm td { text-align: center; padding: .35rem .2rem; border-radius: 3px; outline: 2px solid transparent; outline-offset: -1px; min-width: 2.6rem; border: 0; }
+.lia-home table.hm tr.gap td, .lia-home table.hm tr.gap th { padding: 0; height: 6px; background: none; }
+.lia-home table.hm td:hover { outline-color: var(--ink); }
+.lia-home table.hm tr:hover th, .lia-home table.hm th.hot { color: var(--accent); }
+.lia-home .hm-legend { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .8rem; margin-top: .6rem; font-size: .7rem; color: var(--muted); }
+.lia-home .hm-bar { width: 12rem; max-width: 60vw; }
+.lia-home .hm-bar .grad { height: .6rem; border-radius: 3px; background: linear-gradient(90deg, #00224e, #083370, #35456c, #4f576c, #666970, #7d7c78, #948e77, #aea371, #c8b866, #e5cf52, #fee838); }
+.lia-home .hm-bar .ticks { display: flex; justify-content: space-between; font-size: .6rem; margin-top: 2px; font-variant-numeric: tabular-nums; }
+.lia-home .hm-readout { min-height: 1.6em; font-size: .75rem; color: var(--ink-2); margin-top: .4rem; }
+
+/* poster */
+.lia-home .poster-row { display: grid; grid-template-columns: 17rem minmax(0, 1fr); gap: 1.8rem; align-items: center; }
+.lia-home .poster-row .poster-card { transform: none; }
+@media (max-width: 40em) { .lia-home .poster-row { grid-template-columns: minmax(0, 1fr); } .lia-home .poster-row .poster-card { max-width: 15rem; } }
+
+/* cite */
+.lia-home .cite { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.lia-home .cite .tabs { display: flex; gap: .2rem; padding: .4rem .4rem 0; border-bottom: 1px solid var(--line); }
+.lia-home .cite .tabs button { font: inherit; font-size: .75rem; font-weight: 700; padding: .4rem .7rem; border: 0; background: none; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.lia-home .cite .tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
+.lia-home .cite pre { margin: 0; padding: .8rem .9rem; overflow-x: auto; font: .7rem/1.55 var(--md-code-font-family); white-space: pre-wrap; word-break: break-word; background: none; color: var(--ink); }
+.lia-home .cite .copy { position: absolute; right: .5rem; top: .4rem; padding: .3rem .6rem; font-size: .7rem; }
+
+/* acknowledgements */
+.lia-home .logos { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1.2rem 1.5rem; padding: 1.4rem 1.2rem; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); }
+.lia-home .logos img { height: 1.6rem; width: auto; display: block; }
+.lia-home .logos img.tall { height: 2rem; }
+@media (max-width: 30em) { .lia-home .logos img { height: 1.3rem; } .lia-home .logos img.tall { height: 1.6rem; } }
+
+/* lightbox */
+dialog.lb { padding: 0; border: 0; background: transparent; max-width: 96vw; max-height: 96vh; }
+dialog.lb::backdrop { background: rgba(10, 10, 12, .86); }
+dialog.lb img { display: block; max-width: 96vw; max-height: 90vh; width: auto; height: auto; background: #fff; border-radius: 6px; }
+dialog.lb p { color: #e8e8e8; font-size: .75rem; margin: .4rem .2rem 0; max-width: 96vw; }
+dialog.lb .close { position: fixed; right: .8rem; top: .6rem; width: 2rem; height: 2rem; border-radius: 50%; border: 0; background: rgba(255, 255, 255, .14); color: #fff; font-size: 1.3rem; line-height: 1; cursor: pointer; }

@@ -1,0 +1,78 @@
+site_name: Lost in Aggregation?
+site_description: >-
+  How much thermal-zoning and floor-stacking detail a building energy model needs: an ASIM 2026 poster and its open
+  data, 1,270 building contexts and 79 simplified models against detailed EnergyPlus references.
+site_url: https://energy-atlas.github.io/lost-in-aggregation/
+repo_url: https://github.com/Energy-Atlas/lost-in-aggregation
+repo_name: Energy-Atlas/lost-in-aggregation
+copyright: Content and data CC BY 4.0 · Environmental Systems Lab, Cornell University
+strict: true
+
+theme:
+  name: material
+  custom_dir: overrides
+  language: en
+  font:
+    text: Source Sans 3
+    code: Source Code Pro
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Dark theme
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Light theme
+  features:
+    - navigation.tabs
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - content.code.copy
+    - content.tabs.link
+  icon:
+    repo: fontawesome/brands/github
+  favicon: assets/favicon.svg
+
+nav:
+  - Home: index.md
+  - Explorer: explorer.md
+  - Data: data.md
+  - Methods: methods.md
+
+extra_css:
+  - stylesheets/extra.css
+  - stylesheets/home.css
+  - stylesheets/explorer.css
+
+extra_javascript:
+  - javascripts/home.js
+  - path: javascripts/explorer.js
+    type: module
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.snippets:
+      base_path: [snippets]
+      check_paths: true
+
+not_in_nav: |
+  /data/**

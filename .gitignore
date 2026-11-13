@@ -1,0 +1,4 @@
+site/
+docs/data/
+docs/hourly-local/
+__pycache__/

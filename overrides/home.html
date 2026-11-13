@@ -1,42 +1,9 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lost in Aggregation? — Zoning and stacking detail in building energy models</title>
-<meta name="description" content="ASIM 2026 poster: how much thermal-zoning and floor-stacking detail a building energy model needs, tested on 1,046 building contexts against detailed EnergyPlus references.">
-<meta name="theme-color" content="#b31b1b">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lost in Aggregation? The Diminishing Returns of Geometric Fidelity and Thermal Zoning Details in Urban-Scale Building Energy Simulations">
-<meta property="og:description" content="Nine simplified zoning and stacking models against detailed EnergyPlus references in 1,046 building contexts. ASIM 2026 poster.">
-<meta property="og:url" content="https://energy-atlas.github.io/lost-in-aggregation/">
-<meta property="og:image" content="https://energy-atlas.github.io/lost-in-aggregation/assets/poster_preview.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23b31b1b'/%3E%3Cg fill='%23fff'%3E%3Crect x='6' y='6' width='9' height='9'/%3E%3Crect x='17' y='6' width='9' height='9' opacity='.7'/%3E%3Crect x='6' y='17' width='20' height='9' opacity='.45'/%3E%3C/g%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&amp;display=swap">
-<link rel="stylesheet" href="assets/site.css">
-</head>
-<body>
-
-<nav class="nav" aria-label="Sections">
-  <div class="wrap">
-    <a class="brand" href="#top">Lost in Aggregation<span>?</span></a>
-    <ul>
-      <li><a href="#findings">Findings</a></li>
-      <li><a href="#methods">Methods</a></li>
-      <li><a href="#explore">Building types</a></li>
-      <li><a href="#climate">Climates</a></li>
-      <li><a href="#cost">Cost</a></li>
-      <li><a href="#poster">Poster</a></li>
-      <li><a href="#cite">Cite</a></li>
-    </ul>
-  </div>
-</nav>
-
-<header class="hero" id="top">
-  <div class="wrap">
+{% extends "main.html" %}
+{#- Landing page: hero above the grid, the poster story in the content area. Styles: stylesheets/home.css. -#}
+{% block tabs %}
+{{ super() }}
+<section class="lia-hero" id="top">
+  <div class="md-grid">
     <div>
       <p class="venue"><span class="tag">Poster 247</span> ASIM 2026 · Singapore · 16–18 Nov 2026</p>
       <h1>Lost in Aggregation<span class="q">?</span>
@@ -47,8 +14,8 @@
         <a class="btn primary" href="assets/poster.pdf">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></svg>
           Poster (PDF, 1.2 MB)</a>
-        <a class="btn" href="#findings">Key findings</a>
-        <a class="btn" href="#explore">Explore the errors</a>
+        <a class="btn" href="explorer/">Explore the data</a>
+        <a class="btn" href="data/">Download the data</a>
       </div>
     </div>
     <div class="poster-col">
@@ -57,9 +24,10 @@
       </a>
     </div>
   </div>
-</header>
-
-<main class="wrap">
+</section>
+{% endblock %}
+{% block content %}
+<div class="lia-home">
   <div class="stats" role="list">
     <div role="listitem"><b>1,046</b><span>building contexts</span></div>
     <div role="listitem"><b>15</b><span>building types, apartments and offices</span></div>
@@ -86,7 +54,7 @@
       <article class="card">
         <span class="big">76 % <small>/</small> 55 %</span>
         <h3>Often the single best model</h3>
-        <p>SM is the sole best model in 76 % of contexts for cooling and 55 % for heating.</p>
+        <p>SM is the sole best model in 76 % of contexts for cooling and 55 % for heating. Models that share one simulation count once, ties within 0.008 W/m², over the 974 contexts where SM differs from the reference.</p>
       </article>
       <article class="card">
         <span class="big">1.2–1.9 <small>W/m²</small></span>
@@ -108,6 +76,21 @@
         <h3>Cost differs by program</h3>
         <p>In midrise apartments SM costs about the CPU time of the floor multiplier (SFZM); in the large office SFZM is 4–5× cheaper.</p>
       </article>
+    </div>
+  </section>
+
+
+  <section id="data" aria-labelledby="d-h">
+    <div class="callout">
+      <div>
+        <p class="eyebrow">Open data</p>
+        <h2 id="d-h">Every case, every run, every hour</h2>
+        <p>The full study is open under CC BY 4.0: 1,270 contexts, 79 simplified models, 200,660 cases and the hourly series of 45,424 EnergyPlus runs. Filter and compare them in the browser, query them with SQL, or download the Parquet files.</p>
+      </div>
+      <div class="buttons">
+        <a class="btn primary" href="explorer/">Open the explorer</a>
+        <a class="btn" href="data/">Data and downloads</a>
+      </div>
     </div>
   </section>
 
@@ -283,21 +266,10 @@
       <img src="assets/logos/cornell-atkinson.png" alt="Cornell Atkinson Center for Sustainability" class="tall" loading="lazy">
     </div>
   </section>
-</main>
-
-<footer>
-  <div class="wrap">
-    <span>Environmental Systems Lab, Cornell University</span>
-    <span>ASIM 2026 poster companion page</span>
-  </div>
-</footer>
-
 <dialog class="lb" id="lb" aria-label="Enlarged figure">
   <button class="close" type="button" aria-label="Close">×</button>
   <img alt="">
   <p></p>
 </dialog>
-
-<script src="assets/site.js" defer></script>
-</body>
-</html>
+</div>
+{% endblock %}

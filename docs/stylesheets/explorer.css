@@ -1,0 +1,68 @@
+/* Explorer page (docs/explorer.md). Scoped to .lia-ex. */
+.lia-ex {
+  --ex-line: var(--md-default-fg-color--lightest);
+  --ex-surface: #f6f5f1;
+  --ex-surface-2: #ecebe5;
+  --ex-accent: var(--md-primary-fg-color);
+  --ex-radius: 8px;
+  margin-top: 1rem;
+}
+[data-md-color-scheme="slate"] .lia-ex { --ex-surface: #1f2026; --ex-surface-2: #2a2b33; --ex-accent: #ff7b7b; }
+
+.lia-ex .ex-status { padding: .8rem 1rem; border-radius: var(--ex-radius); background: var(--ex-surface); font-size: .8rem; }
+.lia-ex .ex-status.error { background: #fdecea; color: #8c1515; }
+[data-md-color-scheme="slate"] .lia-ex .ex-status.error { background: #3a1d1f; color: #ffb4b4; }
+.lia-ex .ex-layout { display: grid; grid-template-columns: 15.5rem minmax(0, 1fr); gap: 1.2rem; align-items: start; }
+.lia-ex .ex-layout[hidden] { display: none; }
+@media (max-width: 60em) { .lia-ex .ex-layout { grid-template-columns: minmax(0, 1fr); } }
+
+/* filters */
+.lia-ex .ex-filters { position: sticky; top: 3.4rem; max-height: calc(100vh - 4rem); overflow-y: auto; font-size: .72rem; }
+@media (max-width: 60em) { .lia-ex .ex-filters { position: static; max-height: none; } }
+.lia-ex .ex-filter-box { background: var(--ex-surface); border-radius: var(--ex-radius); padding: .6rem .8rem .8rem; border: 1px solid var(--ex-line); margin: 0; }
+.lia-ex .ex-filter-box > summary { font-weight: 700; font-size: .8rem; cursor: pointer; list-style: revert; }
+.lia-ex .ex-count { display: block; font-weight: 600; color: var(--md-default-fg-color--light); font-size: .7rem; margin-top: .1rem; }
+.lia-ex .ex-field { margin-top: .75rem; }
+.lia-ex .ex-label, .lia-ex .ex-field > label { display: flex; justify-content: space-between; font-weight: 700; margin-bottom: .3rem; color: var(--md-default-fg-color--light); text-transform: uppercase; letter-spacing: .04em; font-size: .62rem; }
+.lia-ex .ex-all { font-weight: 600; text-transform: none; letter-spacing: 0; font-size: .65rem; }
+.lia-ex .ex-sub { font-size: .62rem; color: var(--md-default-fg-color--light); margin: .45rem 0 .2rem; }
+.lia-ex select, .lia-ex textarea { font: inherit; font-size: .72rem; color: var(--md-default-fg-color); background: var(--md-default-bg-color); border: 1px solid var(--ex-line); border-radius: 6px; padding: .3rem .4rem; }
+.lia-ex .ex-field select { width: 100%; }
+.lia-ex .ex-chips { display: flex; flex-wrap: wrap; gap: .25rem; }
+.lia-ex .ex-chip { font: inherit; font-size: .66rem; font-weight: 600; padding: .15rem .45rem; border-radius: 999px; border: 1px solid var(--ex-line); background: transparent; color: var(--md-default-fg-color--light); cursor: pointer; display: inline-flex; align-items: center; gap: .3rem; }
+.lia-ex .ex-chip[aria-pressed="true"] { background: var(--md-default-bg-color); color: var(--md-default-fg-color); border-color: var(--md-default-fg-color--lighter); box-shadow: 0 1px 1px rgba(0, 0, 0, .06); }
+.lia-ex .ex-chip[aria-pressed="false"] { text-decoration: line-through; opacity: .75; }
+.lia-ex .ex-seg { display: inline-flex; flex-wrap: wrap; padding: 2px; border-radius: 7px; background: var(--ex-surface-2); border: 1px solid var(--ex-line); }
+.lia-ex .ex-seg button { font: inherit; font-size: .68rem; font-weight: 700; padding: .2rem .5rem; border: 0; border-radius: 5px; background: transparent; color: var(--md-default-fg-color--light); cursor: pointer; }
+.lia-ex .ex-seg button[aria-pressed="true"] { background: var(--md-default-bg-color); color: var(--md-default-fg-color); box-shadow: 0 1px 2px rgba(0, 0, 0, .12); }
+.lia-ex .ex-btn { font: inherit; font-size: .7rem; font-weight: 700; padding: .35rem .7rem; border-radius: 6px; border: 1px solid var(--ex-line); background: var(--md-default-bg-color); color: var(--md-default-fg-color); cursor: pointer; }
+.lia-ex .ex-btn:hover { border-color: var(--md-default-fg-color--light); }
+.lia-ex .ex-btn.primary { background: var(--ex-accent); border-color: var(--ex-accent); color: #fff; }
+[data-md-color-scheme="slate"] .lia-ex .ex-btn.primary { color: #16181d; }
+.lia-ex .ex-reset { margin-top: 1rem; width: 100%; }
+
+/* main column */
+.lia-ex .ex-tabs { display: flex; flex-wrap: wrap; gap: .2rem; border-bottom: 1px solid var(--ex-line); margin-bottom: .9rem; }
+.lia-ex .ex-tabs button { font: inherit; font-size: .78rem; font-weight: 700; padding: .45rem .8rem; border: 0; background: none; color: var(--md-default-fg-color--light); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.lia-ex .ex-tabs button[aria-selected="true"] { color: var(--md-default-fg-color); border-bottom-color: var(--ex-accent); }
+.lia-ex .ex-row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: .6rem 1rem; margin-bottom: .7rem; font-size: .72rem; }
+.lia-ex .ex-row > label { display: flex; flex-direction: column; gap: .2rem; font-weight: 700; color: var(--md-default-fg-color--light); }
+.lia-ex .ex-row > label.ex-check { flex-direction: row; align-items: center; gap: .35rem; padding-bottom: .3rem; }
+.lia-ex .ex-row > label.ex-grow { flex: 1 1 18rem; }
+.lia-ex .ex-row > label.ex-grow select { width: 100%; }
+.lia-ex .ex-actions { margin-top: .6rem; align-items: center; }
+.lia-ex .ex-intro { font-size: .78rem; margin: 0 0 .8rem; max-width: 80ch; }
+.lia-ex .ex-note { font-size: .68rem; color: var(--md-default-fg-color--light); margin: .3rem 0; }
+.lia-ex .ex-chart { min-height: 6rem; overflow-x: auto; }
+.lia-ex .ex-chart svg { display: block; max-width: none; }
+.lia-ex .ex-empty { padding: 1.4rem; text-align: center; color: var(--md-default-fg-color--light); background: var(--ex-surface); border-radius: var(--ex-radius); }
+.lia-ex .ex-methods { margin: 0 0 .5rem; }
+.lia-ex .ex-sw { width: .55rem; height: .55rem; border-radius: 2px; background: var(--c); display: inline-block; margin-right: .35rem; vertical-align: baseline; flex: none; }
+.lia-ex textarea { width: 100%; font-family: var(--md-code-font-family); font-size: .7rem; line-height: 1.5; resize: vertical; }
+
+/* tables */
+.lia-ex .ex-table-wrap { overflow-x: auto; margin-top: .6rem; }
+.md-typeset .lia-ex table.ex-table { display: table; border-collapse: collapse; width: 100%; font-size: .68rem; font-variant-numeric: tabular-nums; border: 0; }
+.md-typeset .lia-ex table.ex-table th, .md-typeset .lia-ex table.ex-table td { padding: .3rem .6rem .3rem 0; border-bottom: 1px solid var(--ex-line); text-align: left; white-space: nowrap; background: none; }
+.md-typeset .lia-ex table.ex-table th { font-weight: 700; color: var(--md-default-fg-color--light); font-size: .62rem; text-transform: uppercase; letter-spacing: .04em; position: sticky; top: 0; background: var(--md-default-bg-color); }
+.md-typeset .lia-ex table.ex-table .num { text-align: right; }

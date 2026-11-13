@@ -1,4 +1,4 @@
-name: Deploy site to GitHub Pages
+name: Build and deploy the site
 
 on:
   push:
@@ -14,18 +14,39 @@ concurrency:
   group: pages
   cancel-in-progress: true
 
+env:
+  RELEASE_TAG: data-v1.0.0
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Check that every local link and image exists
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Fetch the explorer's data from the release and check it
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh release download "$RELEASE_TAG" -R "$GITHUB_REPOSITORY" -D dl -p site-data.zip -p SHA256SUMS.txt
+          (cd dl && grep ' site-data.zip$' SHA256SUMS.txt | sha256sum -c -)
+          mkdir -p docs/data && unzip -q dl/site-data.zip -d docs/data
+          ls -la docs/data
+      - name: Build
+        env:
+          NO_MKDOCS_2_WARNING: "1"
+        run: mkdocs build --strict
+      - name: Check that every local link and image on the home page exists
         run: |
           set -e
           cd site
           missing=0
           for ref in $(grep -oE '(src|href)="[^"#:]+"' index.html | sed -E 's/^(src|href)="//; s/"$//' | sort -u); do
-            if [ ! -e "$ref" ]; then echo "missing: $ref"; missing=1; fi
+            target="$ref"; case "$target" in */) target="${target}index.html";; esac
+            if [ ! -e "$target" ]; then echo "missing: $ref"; missing=1; fi
           done
           exit $missing
       - uses: actions/configure-pages@v5

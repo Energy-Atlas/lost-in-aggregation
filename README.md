@@ -8,14 +8,22 @@ The page is published at <https://energy-atlas.github.io/lost-in-aggregation/>, 
 
 | Path | Content |
 |---|---|
-| `site/index.html` | The landing page: one static file with no build step. |
-| `site/assets/` | The poster PDF, a preview image and the poster figures (PNG, 2000 px wide). |
+| `site/index.html` | The landing page. It is static, with no build step. |
+| `site/assets/site.css`, `site/assets/site.js` | Styles (light and dark), the interactive heat map, the figure lightbox and the citation box. |
+| `site/assets/poster.pdf` | The final poster, as presented. |
+| `site/assets/poster_preview.jpg` | A preview image of the poster. |
+| `site/assets/*.png` | The poster figures, 2000 px wide. |
+| `site/assets/logos/` | The affiliation and support logos from the poster footer. |
 | `.github/workflows/pages.yml` | On every push to `main`, checks that every local link and image exists, then deploys `site/` to GitHub Pages. |
 
-## Publishing
+## Updating
 
-1. Create the repository `energy-atlas/lost-in-aggregation` on GitHub.
-2. In *Settings → Pages*, set *Source* to **GitHub Actions**.
-3. Push `main`; the workflow deploys the page.
+Every push to `main` redeploys the page.
 
-The figures are produced by the poster build in the BEMGen repository (`research/reduced-campaign/figures-f1/poster-asim2026/`) and copied here.
+The figures come from the poster build in the BEMGen repository (`research/reduced-campaign/figures-f1/poster-asim2026/`). The heat-map values in `site.js` are the poster's Fig. 3 data (`PWa_where_errors_grow_data.csv`). The poster PDF is the final version, which includes manual edits made after the scripted build.
+
+To preview locally, serve the folder:
+
+```bash
+python -m http.server 8765 --directory site
+```

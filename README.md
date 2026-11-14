@@ -16,6 +16,7 @@ The site is built with MkDocs Material and has no server: the explorer runs Duck
 | Data and Methods pages | `docs/data.md` (includes `snippets/DATA.md`, the release's dictionary), `docs/methods.md` |
 | Case table, contexts, runs, monthly and daily series | Not in git. The workflow takes `site-data.zip` from the release, checks its checksum, and unpacks it into `docs/data/`. |
 | Hourly series | Served by three data sites, `Energy-Atlas/lost-in-aggregation-data-1` to `-3` (a Pages site holds at most 1 GB). `shards.json` in the site data says which site holds which building type. |
+| Poster source | `poster/poster_asim2026_zoning_lod.pptx`, the editable poster as presented (not published by the site; its PDF is `docs/assets/poster.pdf`) |
 
 On every push to `main`, the workflow:
 1. downloads the site data from the release;
